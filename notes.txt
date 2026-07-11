@@ -1,0 +1,27 @@
+Final Commands
+
+Generate:
+
+python ocuvision_complete.py generate --cases 10000
+
+Train:
+
+python ocuvision_complete.py train
+
+YOLO:
+
+python ocuvision_complete.py yolo-prep
+
+python ocuvision_complete.py yolo
+
+Inference:
+
+python ocuvision_complete.py infer sample.jpg
+
+Before doing the full run, I recommend running:
+
+python ocuvision_complete.py generate --cases 5
+
+python ocuvision_complete.py train
+
+first to verify that all models compile correctly on the Tesla V100.
