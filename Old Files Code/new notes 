@@ -1,0 +1,3 @@
+python ocuvision_complete_FIXED.py generate --cases 6000
+
+python ocuvision_complete_FIXED.py train 
