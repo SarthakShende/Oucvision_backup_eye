@@ -1,0 +1,13 @@
+{
+  "disease": "dry_eye",
+  "confidence": 90.12,
+  "quality": [
+    [
+      "good",
+      64.0091061592102
+    ]
+  ],
+  "yolo_detections": [],
+  "power_cls": -1,
+  "eye_power_note": "Model 5 not trained \u2014 awaiting clinical label data"
+}

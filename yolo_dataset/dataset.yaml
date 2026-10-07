@@ -1,0 +1,5 @@
+path: /home/ghrceadmin8/OcuVision/yolo_dataset
+train: train/images
+val: val/images
+nc: 7
+names: ['corneal_abrasion', 'corneal_ulcer', 'foreign_body_visible', 'pterygium_lesion', 'pinguecula_lesion', 'hemorrhage_spot', 'lid_lesion']
