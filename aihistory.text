@@ -1,0 +1,36 @@
+All acceptance tests pass. Let me provide a final summary:
+Summary
+All components are complete and working:
+Files Created/Updated
+1. ocuvision_script_v7.py (2831 lines) - Complete pipeline with:
+- Two-stage generation (sample_scene + render_scene) with deterministic per-case seeds
+- 7 gaze views with proper left-eye mirroring (pre-mirror delta negation)
+- Honest quality labels (0-3) with monotonic sharpness
+- 5-channel segmentation masks (pupil⊆iris⊆open, iris∩sclera=∅)
+- YOLO boxes for 6 lesion classes (corneal scar excluded - diffuse opacity)
+- Per-case meta.json + global metadata.json + images.csv + dataset_manifest.json
+- QC with 3-try regeneration + force-accept
+- Deterministic stratified split (70/15/15) with MIN_TEST_CASES=8 for classes 5,6,11
+- M1 (MobileNetV3-Small), M2 (EfficientNet-Lite0), M4 (U-Net), FusionMLP training
+- ONNX export (opset 17, dynamic axes, torch-vs-onnx <1e-3, INT8 where supported)
+- Eigen-CAM, inference API, full CLI
+2. validate_dataset.py - 13 validation checks, all passing
+3. check_dataset.py - Creates class sheets (13) + same-case sheet (13 rows × 7 views)
+4. CHANGES_v7.md - Complete change log with justifications
+Acceptance Test Results (20 cases/class)
+✅ generate --cases 20        → 260 cases, 1820 images
+✅ validate_dataset.py        → 13/13 checks PASS
+✅ check_dataset.py           → 14 sheets created
+✅ train --epochs 2           → M1, M2, M4, Fusion trained
+✅ yolo-prep                  → 79/17/23 train/val/test
+✅ export                     → 4 ONNX models, diff < 1e-3
+✅ infer                      → Runs successfully
+✅ pyflakes                   → 0 errors
+Key Design Decisions Documented
+- Corneal scar (class 7) has no YOLO box (diffuse opacity)
+- cases_per_class=100 default, --cases 5000 for full run
+- Ptosis occlusion takes precedence over q3 ≤0.20 rule
+- Renderer stays matplotlib
+- Split keyed on (class, case_idx) for exact stratification
+- QC force-accept after 3 retries guarantees completion
+▣  Build · Nemotron 3 Ultra 550B A55B

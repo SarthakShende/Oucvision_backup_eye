@@ -1,0 +1,110 @@
+{
+  "case_id": "ptosis_00018",
+  "class_id": 6,
+  "class_name": "ptosis",
+  "case_idx": 18,
+  "quality_label": 0,
+  "eye_side": "right",
+  "questionnaire": [
+    0.28344886775203304,
+    0.0,
+    0.0008964629834680791,
+    0.5,
+    0.0,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.4867591856600484,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.4707832335116109,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.4828071592928609,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.4789314268709859,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.4851417540194234,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.6517295825615292,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.3809700012061512,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.041 < 0.08"
+  ]
+}

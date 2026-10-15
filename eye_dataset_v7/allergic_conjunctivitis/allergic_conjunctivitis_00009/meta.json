@@ -1,0 +1,106 @@
+{
+  "case_id": "allergic_conjunctivitis_00009",
+  "class_id": 2,
+  "class_name": "allergic_conjunctivitis",
+  "case_idx": 9,
+  "quality_label": 1,
+  "eye_side": "right",
+  "questionnaire": [
+    0.0,
+    0.0,
+    0.3282152408920643,
+    0.5,
+    0.5,
+    0.12752643800200583
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.9790611242497107,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "left",
+      "sharpness": 0.9249381994450232,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "right",
+      "sharpness": 0.9731712316715857,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "up",
+      "sharpness": 0.9780998205387732,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "down",
+      "sharpness": 0.9897880529606482,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "macro",
+      "sharpness": 1.216381072983495,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "around",
+      "sharpness": 0.8439369194529718,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    }
+  ]
+}

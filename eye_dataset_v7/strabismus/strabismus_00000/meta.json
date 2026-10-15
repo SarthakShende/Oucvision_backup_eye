@@ -1,0 +1,110 @@
+{
+  "case_id": "strabismus_00000",
+  "class_id": 5,
+  "class_name": "strabismus",
+  "case_idx": 0,
+  "quality_label": 3,
+  "eye_side": "left",
+  "questionnaire": [
+    1.0,
+    0.5,
+    0.5,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "strabismus_base": [
+    0.2556144905594913,
+    0.05662878326927212
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 122.1284942626371,
+      "iris_px": [
+        196.57383072925916,
+        243.05627810988068
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "left",
+      "sharpness": 111.20677566526865,
+      "iris_px": [
+        146.28811644354482,
+        243.05627810988068
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "right",
+      "sharpness": 127.65940475462412,
+      "iris_px": [
+        246.85954501497343,
+        243.05627810988068
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "up",
+      "sharpness": 129.02948760986328,
+      "iris_px": [
+        196.57383072925916,
+        220.1991352527378
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "down",
+      "sharpness": 134.25887298578164,
+      "iris_px": [
+        196.57383072925916,
+        265.9134209670235
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "macro",
+      "sharpness": 50.475940092801466,
+      "iris_px": [
+        196.5738307292591,
+        243.05627810988068
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "around",
+      "sharpness": 72.00812149046396,
+      "iris_px": [
+        208.45906458340733,
+        245.64502248790455
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "strabismus offset not visible in center view"
+  ]
+}

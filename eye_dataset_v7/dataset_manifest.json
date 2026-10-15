@@ -1,0 +1,65 @@
+{
+  "generation_version": "v7",
+  "total_cases": 260,
+  "total_images": 1820,
+  "cases_per_class": 20,
+  "splits": {
+    "train": 167,
+    "val": 39,
+    "test": 54
+  },
+  "quality_distribution": {
+    "0": 22,
+    "1": 30,
+    "2": 43,
+    "3": 165
+  },
+  "rejection_rate": {
+    "0": 0.08461538461538462,
+    "1": 0.11538461538461539,
+    "2": 0.16538461538461538,
+    "3": 0.6346153846153846
+  },
+  "forced_qc_count": 106,
+  "errors": 0,
+  "classes": {
+    "0": "normal",
+    "1": "conjunctivitis",
+    "2": "allergic_conjunctivitis",
+    "3": "dry_eye",
+    "4": "blepharitis",
+    "5": "strabismus",
+    "6": "ptosis",
+    "7": "corneal_scar",
+    "8": "keratitis",
+    "9": "pinguecula",
+    "10": "pterygium",
+    "11": "foreign_body",
+    "12": "subconjunctival_hemorrhage"
+  },
+  "views": [
+    "center",
+    "left",
+    "right",
+    "up",
+    "down",
+    "macro",
+    "around"
+  ],
+  "quality_labels": {
+    "0": "reject",
+    "1": "poor",
+    "2": "acceptable",
+    "3": "good"
+  },
+  "lesion_classes": {
+    "0": "corneal_abrasion",
+    "1": "corneal_ulcer",
+    "2": "foreign_body_visible",
+    "3": "pterygium_lesion",
+    "4": "pinguecula_lesion",
+    "5": "hemorrhage_spot",
+    "6": "lid_lesion"
+  },
+  "timestamp": "2026-10-08 21:13:33"
+}

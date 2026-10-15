@@ -1,0 +1,106 @@
+{
+  "case_id": "normal_00018",
+  "class_id": 0,
+  "class_name": "normal",
+  "case_idx": 18,
+  "quality_label": 0,
+  "eye_side": "left",
+  "questionnaire": [
+    1.0,
+    0.0,
+    0.5,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.393810271852999,
+      "iris_px": [
+        255.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.3886489865835756,
+      "iris_px": [
+        204.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.38562393152096774,
+      "iris_px": [
+        305.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.392803191774874,
+      "iris_px": [
+        255.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.38946914636471774,
+      "iris_px": [
+        255.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.5506324766756734,
+      "iris_px": [
+        255.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.2958335872826865,
+      "iris_px": [
+        255.2,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ]
+}

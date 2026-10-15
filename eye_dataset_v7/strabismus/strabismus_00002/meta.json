@@ -1,0 +1,106 @@
+{
+  "case_id": "strabismus_00002",
+  "class_id": 5,
+  "class_name": "strabismus",
+  "case_idx": 2,
+  "quality_label": 3,
+  "eye_side": "right",
+  "questionnaire": [
+    0.007608914577146428,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "strabismus_base": [
+    -0.3095537723526349,
+    -0.1126064585503232
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 43.25416564941406,
+      "iris_px": [
+        185.24485203368346,
+        281.7386190972167
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "left",
+      "sharpness": 35.09556198118662,
+      "iris_px": [
+        155.9785180360929,
+        281.7386190972167
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "right",
+      "sharpness": 49.112205505371094,
+      "iris_px": [
+        235.53056631939774,
+        281.7386190972167
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "up",
+      "sharpness": 38.76624298095703,
+      "iris_px": [
+        185.24485203368346,
+        258.8814762400739
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "down",
+      "sharpness": 43.48597717285156,
+      "iris_px": [
+        185.24485203368346,
+        287.7864033311565
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "macro",
+      "sharpness": 24.83901966776466,
+      "iris_px": [
+        185.24485203368346,
+        281.7386190972167
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "around",
+      "sharpness": 28.839076995718642,
+      "iris_px": [
+        199.39588162694676,
+        276.59089527777337
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    }
+  ]
+}

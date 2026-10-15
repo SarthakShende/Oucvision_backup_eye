@@ -1,0 +1,110 @@
+{
+  "case_id": "corneal_scar_00001",
+  "class_id": 7,
+  "class_name": "corneal_scar",
+  "case_idx": 1,
+  "quality_label": 2,
+  "eye_side": "right",
+  "questionnaire": [
+    0.3070736867183463,
+    1.0,
+    0.5,
+    1.0,
+    0.5,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 4.94767379759287,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "left",
+      "sharpness": 4.403697967514745,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "right",
+      "sharpness": 4.841716766226455,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "up",
+      "sharpness": 4.9344749450538075,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "down",
+      "sharpness": 5.810802459702245,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "macro",
+      "sharpness": 5.339393615722656,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "around",
+      "sharpness": 3.7833786010742188,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.068 < 0.08"
+  ]
+}

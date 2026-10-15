@@ -1,0 +1,110 @@
+{
+  "case_id": "allergic_conjunctivitis_00012",
+  "class_id": 2,
+  "class_name": "allergic_conjunctivitis",
+  "case_idx": 12,
+  "quality_label": 2,
+  "eye_side": "left",
+  "questionnaire": [
+    0.42679459575584144,
+    0.2911844997555091,
+    0.0,
+    0.5,
+    1.0,
+    0.5
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.9978866576566361,
+      "iris_px": [
+        255.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "left",
+      "sharpness": 0.9810562133206986,
+      "iris_px": [
+        204.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "right",
+      "sharpness": 0.9201736449613236,
+      "iris_px": [
+        305.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "up",
+      "sharpness": 0.9706726073636673,
+      "iris_px": [
+        255.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "down",
+      "sharpness": 1.205650329531636,
+      "iris_px": [
+        255.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "macro",
+      "sharpness": 1.1757507323636673,
+      "iris_px": [
+        255.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    },
+    {
+      "view": "around",
+      "sharpness": 0.8412055969092762,
+      "iris_px": [
+        255.2,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 2
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.070 < 0.08"
+  ]
+}

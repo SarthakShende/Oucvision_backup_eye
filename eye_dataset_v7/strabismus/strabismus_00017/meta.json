@@ -1,0 +1,110 @@
+{
+  "case_id": "strabismus_00017",
+  "class_id": 5,
+  "class_name": "strabismus",
+  "case_idx": 17,
+  "quality_label": 0,
+  "eye_side": "left",
+  "questionnaire": [
+    0.5,
+    1.0,
+    0.1578998082160163,
+    1.0,
+    0.5,
+    1.0
+  ],
+  "strabismus_base": [
+    -0.35525893458087077,
+    -0.05501493513365975
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.31976318336091936,
+      "iris_px": [
+        283.8179131919227,
+        235.0665846590106
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.32048034644685686,
+      "iris_px": [
+        233.5321989062084,
+        235.0665846590106
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.30747985816560686,
+      "iris_px": [
+        334.10362747763696,
+        235.0665846590106
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.3194808957632631,
+      "iris_px": [
+        283.8179131919227,
+        212.20944180186777
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.3146743772085756,
+      "iris_px": [
+        283.8179131919227,
+        257.92372751615346
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.37452316282724496,
+      "iris_px": [
+        283.8179131919227,
+        235.0665846590106
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.25382614134286996,
+      "iris_px": [
+        267.77750475394,
+        232.5516161957576
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.057 < 0.08"
+  ]
+}

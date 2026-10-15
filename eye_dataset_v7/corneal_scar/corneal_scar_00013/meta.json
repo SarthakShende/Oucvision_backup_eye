@@ -1,0 +1,106 @@
+{
+  "case_id": "corneal_scar_00013",
+  "class_id": 7,
+  "class_name": "corneal_scar",
+  "case_idx": 13,
+  "quality_label": 1,
+  "eye_side": "right",
+  "questionnaire": [
+    0.0,
+    1.0,
+    0.011424326634569076,
+    0.3103048659801676,
+    0.08173510598934162,
+    0.3148199307211915
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 1.16759108727274,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "left",
+      "sharpness": 1.1325645369797712,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "right",
+      "sharpness": 1.1550369192264043,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "up",
+      "sharpness": 1.1526145858078962,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "down",
+      "sharpness": 1.16221999352274,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "macro",
+      "sharpness": 1.3639488156040898,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "around",
+      "sharpness": 1.0376510549685918,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    }
+  ]
+}

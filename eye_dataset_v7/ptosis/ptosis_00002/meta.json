@@ -1,0 +1,111 @@
+{
+  "case_id": "ptosis_00002",
+  "class_id": 6,
+  "class_name": "ptosis",
+  "case_idx": 2,
+  "quality_label": 1,
+  "eye_side": "right",
+  "questionnaire": [
+    0.26915963333372583,
+    0.39253665520252506,
+    0.5,
+    1.0,
+    1.0,
+    0.5
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.601531982421875,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "left",
+      "sharpness": 0.5888595581054688,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "right",
+      "sharpness": 0.6029739379882812,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "up",
+      "sharpness": 0.59234619140625,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "down",
+      "sharpness": 0.5894622802734375,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.7780914306058548,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "around",
+      "sharpness": 0.47147369384765625,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.034 < 0.08",
+    "ptosis: upper lid does not cover iris top"
+  ]
+}

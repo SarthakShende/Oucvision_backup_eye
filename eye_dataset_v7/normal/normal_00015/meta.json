@@ -1,0 +1,106 @@
+{
+  "case_id": "normal_00015",
+  "class_id": 0,
+  "class_name": "normal",
+  "case_idx": 15,
+  "quality_label": 0,
+  "eye_side": "right",
+  "questionnaire": [
+    0.5,
+    0.0,
+    0.0,
+    0.5,
+    0.5,
+    0.5
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.4877700805081986,
+      "iris_px": [
+        355.0724679565133,
+        268.1841525670254
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.47858810423349496,
+      "iris_px": [
+        304.78675367079904,
+        268.1841525670254
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.48354721067880746,
+      "iris_px": [
+        405.3581822422276,
+        268.1841525670254
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.48926544189453125,
+      "iris_px": [
+        355.0724679565133,
+        245.3270097098826
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.49398422239755746,
+      "iris_px": [
+        355.0724679565133,
+        291.0412954241683
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.625072479233495,
+      "iris_px": [
+        355.0724679565133,
+        268.1841525670254
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.39801025338238105,
+      "iris_px": [
+        355.0724679565133,
+        268.1841525670254
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "case_id": "conjunctivitis_00003",
+  "class_id": 1,
+  "class_name": "conjunctivitis",
+  "case_idx": 3,
+  "quality_label": 1,
+  "eye_side": "right",
+  "questionnaire": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.9953104829016338,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.4023933410499012,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "left",
+      "sharpness": 0.4073524474952137,
+      "iris_px": [
+        205.71428571428572,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "right",
+      "sharpness": 0.40458297728036996,
+      "iris_px": [
+        306.2857142857143,
+        256.0
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "up",
+      "sharpness": 0.39915084837411996,
+      "iris_px": [
+        256.0,
+        233.14285714285717
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "down",
+      "sharpness": 0.4476509094092762,
+      "iris_px": [
+        256.0,
+        278.8571428571429
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.5792503356788075,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    },
+    {
+      "view": "around",
+      "sharpness": 0.29700469970703125,
+      "iris_px": [
+        256.0,
+        256.0
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 1
+    }
+  ]
+}

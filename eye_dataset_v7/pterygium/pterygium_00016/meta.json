@@ -1,0 +1,111 @@
+{
+  "case_id": "pterygium_00016",
+  "class_id": 10,
+  "class_name": "pterygium",
+  "case_idx": 16,
+  "quality_label": 0,
+  "eye_side": "left",
+  "questionnaire": [
+    0.5,
+    0.0,
+    1.0,
+    1.0,
+    0.11358961109166414,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.536205291384249,
+      "iris_px": [
+        164.2227424242655,
+        241.28026726622537
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.5266380302928155,
+      "iris_px": [
+        113.93702813855123,
+        241.28026726622537
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.5182952878531069,
+      "iris_px": [
+        214.50845670997978,
+        241.28026726622537
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.5267601009545615,
+      "iris_px": [
+        164.2227424242655,
+        218.42312440908253
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.5394248958764365,
+      "iris_px": [
+        164.2227424242655,
+        264.1374101233682
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.6643409550742945,
+      "iris_px": [
+        164.2227424242655,
+        241.28026726622534
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.44159698486328125,
+      "iris_px": [
+        164.4227424242655,
+        241.28026726622534
+      ],
+      "scale": 0.8,
+      "yolo": "3 0.059236 0.471251 0.101197 0.053056",
+      "box": [
+        0.05923649723936386,
+        0.47125052200434636,
+        0.10119665688394064,
+        0.053055901391389826
+      ],
+      "quality_label": 0
+    }
+  ]
+}

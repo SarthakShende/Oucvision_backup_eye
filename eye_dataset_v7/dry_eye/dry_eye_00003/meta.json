@@ -1,0 +1,110 @@
+{
+  "case_id": "dry_eye_00003",
+  "class_id": 3,
+  "class_name": "dry_eye",
+  "case_idx": 3,
+  "quality_label": 0,
+  "eye_side": "left",
+  "questionnaire": [
+    1.0,
+    0.5,
+    0.9837719357802336,
+    0.0,
+    0.1365226534497407,
+    0.5
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.38072967529296875,
+      "iris_px": [
+        329.637949013739,
+        265.4949351085615
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.3751220703125,
+      "iris_px": [
+        279.3522347280247,
+        265.4949351085615
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.368072509765625,
+      "iris_px": [
+        379.92366329945327,
+        265.4949351085615
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.38445281982421875,
+      "iris_px": [
+        329.637949013739,
+        242.63779225141866
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.3779449462890625,
+      "iris_px": [
+        329.637949013739,
+        288.3520779657044
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.49636459349130746,
+      "iris_px": [
+        329.637949013739,
+        265.4949351085615
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.28989791868661996,
+      "iris_px": [
+        329.837949013739,
+        265.4949351085615
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ],
+  "qc_forced": true,
+  "qc_reasons": [
+    "mean eye area 0.064 < 0.08"
+  ]
+}

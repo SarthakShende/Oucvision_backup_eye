@@ -1,0 +1,106 @@
+{
+  "case_id": "strabismus_00007",
+  "class_id": 5,
+  "class_name": "strabismus",
+  "case_idx": 7,
+  "quality_label": 3,
+  "eye_side": "left",
+  "questionnaire": [
+    0.5,
+    0.0,
+    0.5,
+    1.0,
+    1.0,
+    0.5
+  ],
+  "strabismus_base": [
+    -0.24218273922624123,
+    -0.07135974576625427
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 105.2737808227539,
+      "iris_px": [
+        310.3560546802837,
+        272.3107990322867
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "left",
+      "sharpness": 108.40453338623047,
+      "iris_px": [
+        260.0703403945694,
+        272.3107990322867
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "right",
+      "sharpness": 78.46527481077646,
+      "iris_px": [
+        360.641768965998,
+        272.3107990322867
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "up",
+      "sharpness": 91.74215698242188,
+      "iris_px": [
+        310.3560546802837,
+        249.4536561751438
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "down",
+      "sharpness": 86.93318176269531,
+      "iris_px": [
+        310.3560546802837,
+        295.1679418894296
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "macro",
+      "sharpness": 39.30197906284593,
+      "iris_px": [
+        310.3560546802837,
+        272.3107990322867
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    },
+    {
+      "view": "around",
+      "sharpness": 58.35359191894531,
+      "iris_px": [
+        299.48484374422696,
+        269.04863922582933
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 3
+    }
+  ]
+}

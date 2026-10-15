@@ -1,0 +1,106 @@
+{
+  "case_id": "conjunctivitis_00009",
+  "class_id": 1,
+  "class_name": "conjunctivitis",
+  "case_idx": 9,
+  "quality_label": 0,
+  "eye_side": "left",
+  "questionnaire": [
+    1.0,
+    0.5,
+    0.0,
+    0.5,
+    0.0,
+    0.0
+  ],
+  "strabismus_base": [
+    0.0,
+    0.0
+  ],
+  "views": [
+    {
+      "view": "center",
+      "sharpness": 0.830356595441117,
+      "iris_px": [
+        169.18286181590776,
+        243.26075179211577
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "left",
+      "sharpness": 0.8364181490032934,
+      "iris_px": [
+        118.89714753019348,
+        243.26075179211577
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "right",
+      "sharpness": 0.8249130220501684,
+      "iris_px": [
+        219.46857610162203,
+        243.26075179211577
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "up",
+      "sharpness": 0.8393096895306371,
+      "iris_px": [
+        169.18286181590776,
+        220.40360893497294
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "down",
+      "sharpness": 0.8339920015423559,
+      "iris_px": [
+        169.18286181590776,
+        266.1178946492587
+      ],
+      "scale": 1.0,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "macro",
+      "sharpness": 0.9972572323022177,
+      "iris_px": [
+        169.1828618159078,
+        243.26075179211577
+      ],
+      "scale": 1.35,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    },
+    {
+      "view": "around",
+      "sharpness": 0.742748260483495,
+      "iris_px": [
+        169.38286181590775,
+        243.26075179211577
+      ],
+      "scale": 0.8,
+      "yolo": "",
+      "box": null,
+      "quality_label": 0
+    }
+  ]
+}
