@@ -1,0 +1,33 @@
+{
+  "num_classes": 13,
+  "classes": {
+    "0": "normal",
+    "1": "conjunctivitis",
+    "2": "allergic_conjunctivitis",
+    "3": "dry_eye",
+    "4": "blepharitis",
+    "5": "strabismus",
+    "6": "ptosis",
+    "7": "corneal_scar",
+    "8": "keratitis",
+    "9": "pinguecula",
+    "10": "pterygium",
+    "11": "foreign_body",
+    "12": "subconjunctival_hemorrhage"
+  },
+  "class_ids": {
+    "normal": 0,
+    "conjunctivitis": 1,
+    "allergic_conjunctivitis": 2,
+    "dry_eye": 3,
+    "blepharitis": 4,
+    "strabismus": 5,
+    "ptosis": 6,
+    "corneal_scar": 7,
+    "keratitis": 8,
+    "pinguecula": 9,
+    "pterygium": 10,
+    "foreign_body": 11,
+    "subconjunctival_hemorrhage": 12
+  }
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=OcuVision VM Agent
+After=network.target
+
+[Service]
+Type=simple
+User=ghrceadmin8
+WorkingDirectory=/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform
+Environment=PATH=/home/ghrceadmin8/OcuVision/vmn8n/.venv/bin:/usr/bin:/bin
+EnvironmentFile=/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/.env
+ExecStart=/home/ghrceadmin8/OcuVision/vmn8n/.venv/bin/uvicorn automation.vm_agent:app --host 127.0.0.1 --port 8000 --workers 1
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,50 @@
+project:
+  name: ocuvision-platform
+  version: 1.0.0
+
+api:
+  host: 127.0.0.1
+  port: 8000
+  auth:
+    token_env: OCUVISION_API_TOKEN
+    require_auth: true
+  rate_limit: 60
+  max_request_size_mb: 32
+
+jobs:
+  max_concurrent: 2
+  worker_isolation: true
+  training_requires_approval: true
+  recovery: true
+
+storage:
+  disk_reserve_gb: 25
+  max_download_mb: 8192
+  max_archive_expand_gb: 2
+  allow_public_ip: false
+  dns_rebind_protect: true
+
+datasets:
+  split_seed: 42
+  split_train: 0.70
+  split_val: 0.15
+  split_test: 0.15
+  use_group_splitting: true
+  real_dataset_dir: dataset/real_raw
+  quarantine_dir: dataset/quarantine
+
+training:
+  model5:
+    architecture: convnext_tiny
+    input_size: 224
+    batch_size: 32
+    epochs: 40
+    lr: 0.0001
+    weight_decay: 0.01
+    seed: 42
+    early_stopping_patience: 7
+    mixed_precision: true
+    grad_accum: 4
+
+monitoring:
+  poll_interval_s: 5

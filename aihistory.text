@@ -34,3 +34,71 @@ Key Design Decisions Documented
 - Split keyed on (class, case_idx) for exact stratification
 - QC force-accept after 3 retries guarantees completion
 ▣  Build · Nemotron 3 Ultra 550B A55B
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@#$%^@&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@noonedraw
+
+
+
+$ grep -rn "0\.0\.0\.0\|--host\|host=" /home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform --include="*.py" --include="*.sh" --include="*.service" --include="*.yaml" --include="*.md" | grep -v "\.pytest_cache"; echo "--- JobManager usage ---"; grep -rn "JobManager\|job_manager\|JobWorker\|job_worker" /home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform --include="*.py" | grep -v tests/; echo "--- _is_safe_url callers ---"; grep -rn "_is_safe_url\|BLOCKED_HOSTS\|PRIVATE_NETS\|verify_sha256\|sha256_file" /home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform --include="*.py"
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/ocuvision-platform.service:11:ExecStart=/home/ghrceadmin8/OcuVision/vmn8n/.venv/bin/uvicorn automation.vm_agent:app --host 127.0.0.1 --port 8000 --workers 1
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/scripts/start.sh:5:uvicorn automation.vm_agent:app --host 127.0.0.1 --port 8000 --workers 1
+--- JobManager usage ---
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/automation/job_manager.py:1:from . import job_database, job_worker
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/automation/job_manager.py:3:class JobManager:
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/automation/job_manager.py:6:        self.worker = job_worker.JobWorker(self.db)
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/automation/job_worker.py:9:logger = logging.getLogger("job_worker")
+/home/ghrceadmin8/OcuVision/vmn8n/ocuvision-platform/automation/job_worker.py:11:class…
+Click to expand
++ Thought: 11.5s
+I've completed my read-only exploration. Here is the audit plan.
+Plan: OcuVisionAI Final Security & Deployment Readiness Audit
+Report target (assumption): ocuvision-platform/reports/final_security_audit.md (the existing reports/ dir already holds initial_project_audit.md, deployment_report.md). Only file created: that report. Everything else read-only, except unavoidable byproducts of the mandated test run (.pytest_cache, jobs.db test rows, __pycache__).
+Key findings already gathered (to be confirmed by live tests)
+Section	Preliminary verdict
+A. API security	PASS with gaps — all 10 protected endpoints use Depends(authentication.verify_token); no subprocess/os.system anywhere in platform code. Gaps: no request-size/rate-limit middleware despite settings.yaml declaring 32 MB / 60 rpm; approval is advisory only (requires_approval: true returned, no server-side gate); non-constant-time token compare.
+B. Network	PASS — 127.0.0.1 in service file, start.sh, settings.yaml; no 0.0.0.0 in platform code; port 8000 not listening; no funnel/cloudflared/ngrok; CORS allow_origins=["127.0.0.1"] (over-restrictive/odd format, but safe). Pre-existing 0.0.0.0:22 SSH and running tailscaled are host-level, not platform.
+C. Dataset acquisition	FAIL / NEEDS ATTENTION — _is_safe_url()/BLOCKED_HOSTS are defined but never called; download_file() follows redirects with no private-IP block (SSRF); verify_sha256() exists but nothing enforces it (sha256 is Optional in manifest schema); max_expand_mb parameter accepted but not enforced (decompression bomb); Zip Slip protection present + covered by test_zip_safe; provenance/license field exists in SourceItem but not persisted.
+D. Jobs	PASS on SQLite persistence, recover_interrupted() restart recovery, parameterized SQL (no injection), cancel handling, no user-supplied commands (worker is a stub). Gaps: JobManager/JobWorker never wired into vm_agent — queued jobs never execute; no duplicate-submission dedup.
+E. Class/data integrity	PASS — config/classes.json 13 IDs match ocuvision_script_v7.py:115-117 exactly; V7 data outside platform (dataset/* contain only .gitkeep); git status = only ?? vmn8n/, zero tracked modifications; all checkpoints (ocuvision_models/*, *.pt) mtimes 2026-10-08.
+F. GPU/ML	Environment verified: Tesla V100-32GB, torch 2.3.1+cu121, cuda.is_available()==True; convnext_tiny weights cached in HF hub (offline test possible). Live smoke test pending execution.
+G. systemd	Unit ocuvision-platform.service: user ghrceadmin8, correct WorkingDirectory, venv uvicorn, Restart=on-failure, no hardcoded secrets; not installed (systemctl is-enabled → No such file). Prereqs: .env does not exist (unit's EnvironmentFile= would fail), no hardening directives, start.sh has weak default token change_me.
+H. Git/secrets	PASS with attention — single repo at /home/ghrceadmin8/OcuVision/.git, no nested .git in vmn8n; vmn8n/ entirely untracked (platform not under version control); name+content secret scans found nothing (values not printed); no .env file exists anywhere in vmn8n.
+Execution steps
+ 1. A — API security (in-process TestClient, no server started):
+- Enumerate all routes from vm_agent.app.routes; for each protected route assert no-token → 403, wrong-token → 401, correct token → non-401/403; /health → 200.
+- Token-unset case in a clean subprocess (OCUVISION_API_TOKEN unset) → expect 503 fail-closed.
+- Oversized unauthenticated body (~2 MB) → confirm response is 401/403, not 413 (proves no size limit).
+- grep-based proof: no subprocess|os.system|popen|shell=True|eval|exec in platform sources; no route outside the 11 known endpoints; docs_url=None, redoc_url=None.
+ 2. B — Network: ss -ltnp, pgrep -af "tailscale|cloudflared|funnel|ngrok", systemctl is-enabled/exists, grep -rn "0.0.0.0", CORS config read. No listener started.
+ 3. C — Acquisition: static evidence (file:line for each gap) + confirm test_zip_safe passes; document decompression-bomb and SSRF gaps as FAIL with exact code references (acquisition/downloader.py:7-17, archive_extractor.py:15).
+ 4. D — Jobs: live checks for duplicate submission (same POST twice → two job_ids), recovery behavior (recover_interrupted SQL), cancel of nonexistent/terminal jobs; jobs.db read via sqlite3 python module (existing 3 queued train rows — noted, not deleted).
+ 5. E — Integrity: re-diff config/classes.json vs ocuvision_script_v7.py; git status --porcelain, git diff --stat, stat mtimes of eye_dataset_v7, ocuvision_models, ocuvision_results, yolo*.pt; confirm dataset/*/ empty. No recovery/recreation of anything.
+ 6. F — GPU smoke (venv, no training):
+- python -c "import torch; x=torch.ones(1,device='cuda'); print(torch.cuda.get_device_name(0), x)"`
+- ConvNeXt-Tiny scaffold: build_model(13) (cached weights, pretrained=False fallback if network needed) + forward randn(1,3,224,224).cuda() → assert output shape (1,13); CPU path also covered by tests/test_model5.py.
+ 7. G — systemd: read unit file (already done), stat perms, verify .env absence, disk headroom (df: 35 GB free / 93% used vs 25 GB reserve). No enable, no start.
+ 8. H — Git/secrets: git ls-files | grep secret filename patterns + content regex scan (report only match counts/paths, never values); confirm no nested .git; list untracked entries.
+ 9. Test suite: cd ocuvision-platform && /home/ghrceadmin8/OcuVision/vmn8n/.venv/bin/python -m pytest tests/ -q (expected ~14 passed). Note: suite writes job rows to automation_data/jobs.db (gitignored platform scratch DB — by design of the suite).
+10. Write report reports/final_security_audit.md with PASS/FAIL/NEEDS ATTENTION per section A–H, exact evidence paths, all commands used, test results, residual risks, deployment prerequisites, and the service name + exact deployment commands:
+Service: ocuvision-platform.service
+sudo cp .../ocuvision-platform/ocuvision-platform.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now ocuvision-platform.service   # only when approved
+sudo systemctl status ocuvision-platform.service
+sudo journalctl -u ocuvision-platform -f
+Guardrails honored: no deletion/modification of any existing file, no systemd enable/start, no tunnel/public exposure, no shell-execution endpoints, class IDs untouched, V7 data and model scripts untouched, no automated data recovery.
+Anticipated bottom line: safe to proceed to localhost-only systemd deployment once prerequisites are met (create .env with strong token first), with dataset-download/SSRF/checksum enforcement and the worker/approval wiring logged as post-deployment blocking items before any real acquisition or training is enabled.
+# Questions
+Where should the audit report be created? The platform already has a reports/ directory.
+ocuvision-platform/reports/ (Recommended)
++ Thought: 10.7s
+Plan confirmed with report at ocuvision-platform/reports/final_security_audit.md.
+I'm still in read-only plan mode, so I've completed all inspection but have not run the tests, GPU smoke check, live API probes, or written the report yet. Say go (or approve the plan) and I'll execute the 10 steps above and deliver the audit.
+
+
+
+############################################$%^&*(##################################)
+

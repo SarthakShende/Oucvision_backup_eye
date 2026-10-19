@@ -1,0 +1,21 @@
+model:
+  name: convnext_tiny
+  pretrained: true
+  num_classes: 13
+  input_size: 224
+training:
+  batch_size: 32
+  epochs: 40
+  lr: 0.0001
+  weight_decay: 0.01
+  seed: 42
+  early_stopping_patience: 7
+  mixed_precision: true
+  grad_accum: 4
+  weighted_loss: true
+  optimizer: adamw
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  stratified_group: true
