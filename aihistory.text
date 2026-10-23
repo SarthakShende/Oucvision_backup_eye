@@ -102,3 +102,147 @@ I'm still in read-only plan mode, so I've completed all inspection but have not 
 
 ############################################$%^&*(##################################)
 
+I have the full picture. Here's what I found and the step-by-step plan.
+What this repo actually is
+ocuvision_script_v7.py (2830 lines) is a synthetic eye-disease pipeline, not a single model. It has 4 trained PyTorch models + an optional YOLO:
+Model	File	Role
+M1	ocuvision_models/m1_best.pt	MobileNetV3-Small, 13-class disease classifier
+M2	ocuvision_models/m2_best.pt	EfficientNet-Lite0, 13-class classifier
+M4	ocuvision_models/m4_best.pt	U-Net (MobileNetV2 enc), 5-channel segmentation (iris/sclera/pupil/upper_lid/lower_lid)
+Fusion	ocuvision_models/fusion_best.pt	MLP(32→256→128→13) fusing M1+M2 logits+questionnaire
+YOLO	ocuvision_models/yolo_best.pt	MISSING — lesion boxes never trained
+Env is already good: .venv/bin/python (3.8.10), torch 2.4.1+cu121, CUDA on Tesla V100-32GB, ultralytics 8.4.106. Dataset eye_dataset_v7/ = 260 cases / 1820 images (train 167 / val 39 / test 54). Test image = testimage/test_eye.jpg (539×360). All 4 checkpoints load cleanly into their architectures (verified).
+Step-by-step: run it today (zero code changes)
+cd /home/ghrceadmin8/OcuVision
+.venv/bin/python ocuvision_script_v7.py infer --image testimage/test_eye.jpg --device 0
+Expect JSON with m1_probs, m2_probs, fusion_probs (13 classes each), seg_mask, eigen_cam, yolo_detections: [].
+Three gotchas I confirmed in the code:
+- yolo_detections will be empty — infer_single only loads YOLO if yolo_best.pt exists (ocuvision_script_v7.py:2664). Needs train-yolo first.
+- The JSON is huge — seg_mask is a raw 5×256×256 array dumped by NpEncoder (line 74).
+- fusion_probs are not meaningful — standalone inference feeds a zero questionnaire into Fusion (ocuvision_script_v7.py:2687).
+Step-by-step: check accuracy
+There is no eval command. Accuracy is only computed inside train (nested eval_model at ocuvision_script_v7.py:2301), printed to stdout and saved only as confusion-matrix PNGs in ocuvision_results/. The checkpoints themselves store no metrics, and ocuvision_checkpoints/ doesn't exist, so train always restarts from scratch.
+So the options are:
+1. Existing artifacts — ocuvision_results/{m1,m2,fusion}_confusion_test.png show the confusion matrix, but the numbers weren't saved, and these came from a 2-epoch smoke test.
+2. Re-run train — re-trains everything, then prints the report. Works, but throws away the checkpoints' lineage to re-derive numbers you should have persisted.
+3. Add an eval subcommand (my recommendation) — loads the 4 saved .pt files, evaluates on the test split with no retraining.
+Proposed plan
+Step 1 — add eval to ocuvision_script_v7.py
+- Hoist eval_model out of train_all to module level (reuse for both train and eval).
+- New evaluate_all(meta_path, models_dir, results_dir, split="test", device):
+- M1/M2: accuracy, macro-F1, per-class P/R/F1 via classification_report, confusion-matrix PNG.
+- M4: mean IoU + per-channel IoU on the test split's 5-channel masks.
+- Fusion: recompute M1/M2 logits on the eval split so the input matches training (with the real 6-dim questionnaire, not zeros).
+- Write ocuvision_results/test_metrics.json.
+- CLI: sub.add_parser("eval") with --split/--batch/--device, wired into run_pipeline (line 2721).
+Step 2 — make infer output usable
+- --save-vis out.jpg: annotated PNG (predicted class + confidence, Eigen-CAM overlay, seg-mask contours).
+- --compact: replace raw 327k-element arrays with per-channel pixel counts (keep full arrays as the default so behavior is preserved).
+- --questionnaire a,b,c,d,e,f: pass real answers so fusion_probs becomes meaningful.
+Step 3 — verify
+- .venv/bin/python -m pyflakes ocuvision_script_v7.py → clean.
+- eval numbers must match the report printed during train (same split, same models).
+- infer --save-vis on testimage/test_eye.jpg and on a synthetic center.jpg for comparison.
+Step 4 (optional) — YOLO: yolo-prep + train-yolo --yolo_epochs 10 so infer also returns lesion boxes. ~minutes on the V100.
+Step 5 (optional) — real accuracy: batch-eval a folder of real labelled eye photos. This is the only number that means anything clinically; eval-dir --images DIR --labels labels.csv would compute per-image accuracy against real labels.
+Accuracy reality check before you spend time
+- Every image is matplotlib-synthetic. Accuracy on this split is not clinical accuracy.
+- Current weights = 2-epoch smoke test on 260 cases → expect low numbers (likely 20–50% macro-F1), not a bug.
+- Test split is 54 cases, 3 per class (8 for foreign_body/ptosis/strabismus) → very wide error bars, ±6% per class.
+- For real accuracy you need real photographs — the synthetic set will only teach the model matplotlib's rendering.
+# Questions
+How should I add the accuracy check?
+Add `eval` subcommand (Recommended)
+What should the test-image run produce?
+Annotated PNG + compact JSON (Recommended)
+Do you have real (non-synthetic) eye photos with labels?
+No, synthetic only for now
++ Thought: 13.6s
+Let me check a few implementation details that affect the plan.
+→Read ocuvision_script_v7.py [limit=80, offset=2180]
+$ cd /home/ghrceadmin8/OcuVision && grep -n "ocuvision_checkpoints\|def ckpt_status\|def ckpt_reset" -A 12 ocuvision_script_v7.py | head -60
+191:_CKPT_DIR = Path("./ocuvision_checkpoints")
+192-
+193-
+194-def _ckpt_path(stage: str) -> Path:
+195-    _CKPT_DIR.mkdir(exist_ok=True)
+196-    return _CKPT_DIR / f"{stage}.ckpt.json"
+197-
+198-
+199-def ckpt_save(stage: str, data: dict) -> None:
+200-    data["_updated"] = time.strftime("%Y-%m-%d %H:%M:%S")
+…
+Click to expand
++ Thought: 3.4s
+$ cd /home/ghrceadmin8/OcuVision && grep -n "MASK_CHANNELS\s*=\|^CLASSES\s*=\|LESION_CLASSES\s*=\|^CFG\s*=" -A 6 ocuvision_script_v7.py | head -50
+102:CFG = {
+103-    "img_size": 224, "seg_size": 256, "gen_px": 512, "dpi": 100,
+104-    "num_classes": 13, "gaze_views": 7, "cases_per_class": 100,
+105-    "out_dir": "./eye_dataset_v7", "models_dir": "./ocuvision_models",
+106-    "results_dir": "./ocuvision_results", "batch": 128, "batch_seg": 32,
+107-    "epochs": 20, "lr": 1e-3, "shuffle": 256, "num_workers": 8,
+108-    "mixed_precision": True, "test_split": 0.15, "val_split": 0.15,
+--
+115:CLASSES = {0:"normal",1:"conjunctivitis",2:"allergic_conjunctivitis",3:"dry_eye",
+116-           4:"blepharitis",5:"strabismus",6:"ptosis",7:"corneal_scar",8:"keratitis",
+…
+Click to expand
++ Thought: 189ms
+Plan is settled. Here it is for approval.
+Final Plan
+Scope: 1 file changed (ocuvision_script_v7.py) + therun.md docs. No dataset/model regeneration, no checkpoint overwrites.
+Change 1 — new eval subcommand (accuracy)
+1a. Hoist the evaluator to module level
+eval_model currently lives inside train_all (ocuvision_script_v7.py:2301). Extract it to a module-level function so training and the new eval path share one implementation:
+def evaluate_classifier(model, name, loader, device, results_dir,
+                        mixed_precision=False, use_questionnaire=False) -> (report, cm)
+Body stays identical (argmax → classification_report over all 13 labels → confusion matrix → results_dir/{name}_confusion_{split}.png). train_all then calls it — same numbers as today, no behavior change.
+1b. New evaluate_all(...)
+def evaluate_all(meta_path: Path, models_dir: Path, results_dir: Path,
+                 split: str = "test", batch: int = 64, batch_seg: int = 32,
+                 device: str = "cuda") -> dict
+Steps:
+1. Load the 4 checkpoints (m1_best.pt, m2_best.pt, m4_best.pt, fusion_best.pt) into their existing classes with pretrained=False for M1/M2 — no HF download, no re-init.
+2. M1 & M2 — EyeDataset(meta_path, split, 224, augment=False) (center view only, matching training-time eval) → evaluate_classifier → per-class P/R/F1, accuracy, macro-F1, confusion PNG.
+3. M4 segmentation — SegDataset(meta_path, split, 256, augment=False) → accumulate per-channel intersection/union over the split → per-channel IoU for ["iris","sclera","pupil","upper_lid","lower_lid"] (MASK_CHANNELS, line 126) + mean IoU. This is currently only printed per-epoch during training; there is no persisted number. Add a per-channel IoU bar chart PNG.
+4. Fusion — recompute M1/M2 logits for the split's cases (center view, metadata order — same recipe as the AllCasesDataset cache at line 2244), concatenate with the real 6-dim questionnaire from metadata, then evaluate Fusion. This fixes the zero-questionnaire approximation that makes standalone Fusion output meaningless.
+5. Write ocuvision_results/{split}_metrics.json:
+{"split":"test","n_cases":54,"timestamp":"...",
+ "models":{"m1":{"accuracy":0.xx,"macro_f1":0.xx,"report":{...}},
+           "m2":{...},"fusion":{...},
+           "m4":{"mean_iou":0.xx,"per_channel_iou":{"iris":0.xx,...}}}}
+6. Print a compact summary table to stdout.
+1c. CLI
+sub.add_parser("eval", help="Evaluate trained checkpoints on a split") with --split (default test, accepts val/train), --batch, --device; wire into run_pipeline (line 2721) alongside the existing branches.
+Change 2 — infer on the test image
+2a. --save-vis PATH → annotated PNG
+Canvas: original image + Eigen-CAM heatmap blended over it (jet colormap) + 5 segmentation contours (one color per MASK_CHANNEL, cv2.findContours) + top-1 class name and confidence + a 13-bar probability strip along the bottom.
+2b. Compact JSON by default
+seg_mask (5×256×256 = 327,680 ints) and eigen_cam are replaced by summaries:
+"seg_mask": {"iris":{"pixels":N,"area_pct":X,"bbox":[x1,y1,x2,y2]}, ...},
+"eigen_cam": {"shape":[7,7],"max":0.xx,"max_xy":[x,y],"mean":0.xx}
+Add --full-arrays to restore today's raw output, and --save-mask PATH to write the raw mask to .npy if you ever need the pixels.
+2c. --questionnaire "a,b,c,d,e,f"
+Real 6 answers feed the Fusion input instead of the zeros hardcoded at line 2687. Output notes "questionnaire_source": "provided" | "zeros".
+Change 3 — therun.md
+Add the eval command and the new infer flags to the run guide, with the synthetic-data caveat repeated next to the accuracy output.
+Verification (run after implementing)
+cd /home/ghrceadmin8/OcuVision
+.venv/bin/python -m pyflakes ocuvision_script_v7.py                    # 0 errors
+.venv/bin/python ocuvision_script_v7.py eval --split test --device 0  # metrics + PNGs
+.venv/bin/python ocuvision_script_v7.py eval --split val  --device 0  # val baseline
+.venv/bin/python ocuvision_script_v7.py infer --image testimage/test_eye.jpg \
+        --save-vis /tmp/ocu_test_eye.jpg --device 0                   # small JSON + PNG
+Parity test (the important one): re-train into a scratch directory so the real checkpoints are untouched, then confirm eval reproduces the report train printed:
+.venv/bin/python ocuvision_script_v7.py train --epochs 2 \
+        --models_dir /tmp/ov_check --results_dir /tmp/ov_check_res
+.venv/bin/python ocuvision_script_v7.py eval --split test \
+        --models_dir /tmp/ov_check --results_dir /tmp/ov_check_res --device 0
+The two reports must match class-for-class. (train does not resume from ocuvision_checkpoints — that dir is only for generate — so this is safe.)
+Expected output shape
+eval on 54 test cases takes seconds on the V100. Expect low numbers — these weights are a 2-epoch smoke test on 260 synthetic cases. That's expected, not a bug.
+Explicitly out of scope (per your answers)
+- YOLO lesion training (yolo_best.pt still missing → yolo_detections stays []).
+- Real-photo accuracy / batch eval on labelled real images.
+- Retraining or regenerating the dataset.
+Say go and I'll implement Change 1–3 and run the verification block.
